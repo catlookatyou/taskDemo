@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'rank'
     ];
 
     /**
@@ -44,5 +45,12 @@ class User extends Authenticatable
 
     public function tasks(){
         return $this->hasMany(Tasks::class);
+    }
+
+    public function checkRank(){
+        if($this->rank > 0)
+            return true;
+        else
+            return false;
     }
 }

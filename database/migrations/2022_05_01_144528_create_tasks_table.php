@@ -18,6 +18,7 @@ class CreateTasksTable extends Migration
             $table->string('name')->nullable();
             $table->string('content')->nullable();
             $table->integer('user_id')->unsigned()->nullable();
+            $table->boolean('confidential')->nullable()->default(false);
             $table->timestamps();
         });
     }

@@ -17,13 +17,12 @@ use App\Http\Controllers\AuthController;
 */
 
 //auth
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::get('/login', [AuthController::class, 'login']);
+Route::get('/user', [AuthController::class, 'user'])->middleware('auth:sanctum');
+Route::post('/login', [AuthController::class, 'login']);
 
 //tasks
 Route::get('/tasks', [TaskController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/tasks/confidential', [TaskController::class, 'confidentialTasks'])->middleware(['auth:sanctum', 'abilities:check-confidential']);
 Route::get('/tasks/{id}', [TaskController::class, 'show'])->middleware('auth:sanctum');
 Route::post('/tasks', [TaskController::class, 'store'])->middleware('auth:sanctum');
 Route::put('/tasks/{id}', [TaskController::class, 'update'])->middleware('auth:sanctum');
