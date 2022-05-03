@@ -9,7 +9,7 @@ use App\Models\User;
 class AuthController extends Controller
 {
     public function user(Request $request){
-        return ['user' => $request->user(), 'token' => $request->user()->currentAccessToken()];
+        return ['user' => $request->user()];  //'token' => $request->user()->currentAccessToken()
     }
 
     public function login(Request $request){
